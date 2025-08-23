@@ -85,7 +85,7 @@ export const Hero = () => {
             </Link>
 
             {user ? (
-              <Link href="/get-started">
+              <Link href="/dashboard">
                 <Button
                   size="lg"
                   className="gap-4 bg-cyan-500 hover:bg-cyan-600 text-white transition-all duration-300"
