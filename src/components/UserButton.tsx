@@ -14,12 +14,14 @@ import {
 } from "./ui/dropdown-menu";
 
 interface UserButtonProps {
-  user: {
-    email: string;
-    name: string;
-    image: string;
-    role?: string | null;
-  };
+  user:
+    | {
+        email: string;
+        name: string;
+        image: string;
+        role?: string | null;
+      }
+    | undefined;
 }
 
 const avatarPlaceholder = "/avatar.webp";
@@ -30,7 +32,7 @@ export default function UserButton({ user }: UserButtonProps) {
       <DropdownMenuTrigger asChild>
         <Button size="icon" className="flex-none rounded-full">
           <Image
-            src={user.image || avatarPlaceholder}
+            src={user?.image || avatarPlaceholder}
             alt="User profile picture"
             width={50}
             height={50}
@@ -39,7 +41,10 @@ export default function UserButton({ user }: UserButtonProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>{user.name || "User"}</DropdownMenuLabel>
+        <DropdownMenuLabel>{user?.name || "User"}</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          <p className="text-xs  text-blue-500">{user?.email || "Email"}</p>
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
@@ -48,7 +53,7 @@ export default function UserButton({ user }: UserButtonProps) {
               <span>Settings</span>
             </Link>
           </DropdownMenuItem>
-          {user.role === "admin" && (
+          {user?.role === "admin" && (
             <DropdownMenuItem asChild>
               <Link href="/admin">
                 <Lock className="mr-2 h-4 w-4" />

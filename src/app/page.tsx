@@ -1,9 +1,12 @@
 import { Hero } from "@/components/hero";
+import { Features } from "@/components/ui/features";
 import LightRays from "@/components/ui/lightrays";
+import { Pricing } from "@/components/ui/Pricing";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col ">
+      {/* Background LightRays - positioned fixed behind everything */}
       <LightRays
         raysOrigin="top-center"
         raysColor="#00ffff"
@@ -16,7 +19,13 @@ export default function Home() {
         distortion={0.05}
         className="custom-rays"
       />
-      <Hero />
-    </>
+
+      {/* Hero content - positioned relative above background */}
+      <div className="relative z-10">
+        <Hero />
+        <Features />
+        <Pricing />
+      </div>
+    </div>
   );
 }

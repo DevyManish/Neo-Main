@@ -23,8 +23,8 @@ export default async function Page() {
   }
 
   return (
-    <main className="mx-auto my-10 space-y-3">
-      <h1 className="text-center text-xl font-bold">Admin Page</h1>
+    <main className="mx-auto my-10 space-y-3 flex flex-col w-full h-screen items-center justify-center">
+      <h1 className="text-center text-xl font-bold ">Admin Page</h1>
       <p className="text-center">Welcome, admin!</p>
     </main>
   );
