@@ -4,6 +4,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "@/components/navbar";
 import { GlassNavbar } from "@/components/ui/navbar-menu";
+import { TRPCReactProvider } from "@/trpc/client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,15 +28,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <SessionProvider>
-          <GlassNavbar />
-          <div className="px-8 md:px-30">{children}</div>
-        </SessionProvider>
-      </body>
-    </html>
+    <TRPCReactProvider>
+      <html lang="en" className="dark">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <SessionProvider>
+            <GlassNavbar />
+            <div className="px-8 md:px-30">{children}</div>
+          </SessionProvider>
+        </body>
+      </html>
+    </TRPCReactProvider>
   );
 }

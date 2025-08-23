@@ -1,4 +1,4 @@
-import { Lock, LogOut, Settings } from "lucide-react";
+import { Lock, LogOut, Settings, LayoutDashboard } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,6 +51,12 @@ export default function UserButton({ user }: UserButtonProps) {
             <Link href="/settings">
               <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard">
+              <LayoutDashboard className="mr-2 h-4 w-4" />
+              <span>Dashboard</span>
             </Link>
           </DropdownMenuItem>
           {user?.role === "admin" && (
