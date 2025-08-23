@@ -24,7 +24,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           name: profile.name ?? profile.login,
           email: profile.email,
           image: profile.avatar_url,
-          role: profile.email === "manishguptacpn@gmail.com" ? "admin" : "user",
+          role: [
+            "manishguptacpn@gmail.com",
+            "pratyushsingha83@gmail.com",
+          ].includes(profile.email ?? "")
+            ? "admin"
+            : "user",
         };
       },
     }),
