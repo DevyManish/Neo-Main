@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { useParams } from "next/navigation";
 import {
   Send,
   Code,
@@ -30,6 +31,7 @@ type Project = {
 
 export default function ChatClient({ project }: { project: Project }) {
   const [messages, setMessages] = useState<Message[]>(project.messages || []);
+  const params = useParams() as { projectId: string };
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [selectedFragment, setSelectedFragment] = useState<{
@@ -46,6 +48,33 @@ export default function ChatClient({ project }: { project: Project }) {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Poll for new messages every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/project/${params.projectId}/messages`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (Array.isArray(data.messages)) {
+          // Only update if new messages are present
+          if (
+            data.messages.length !== messages.length ||
+            (data.messages.length > 0 &&
+              messages.length > 0 &&
+              data.messages[data.messages.length - 1].id !==
+                messages[messages.length - 1].id)
+          ) {
+            setMessages(data.messages);
+          }
+        }
+      } catch (e) {
+        // ignore fetch errors
+      }
+    }, 2000);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.projectId, messages.length]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
