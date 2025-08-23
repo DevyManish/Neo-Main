@@ -1,8 +1,6 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
-import Link from "next/link";
-import UserButton from "@/components/UserButton";
 import { Button } from "@/components/ui/button";
 
 export default function Page() {

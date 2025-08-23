@@ -5,13 +5,14 @@ import { motion } from "framer-motion";
 
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export const Hero = () => {
   const [titleNumber, setTitleNumber] = useState(0);
-  const titles = useMemo(
-    () => ["amazing", "new", "wonderful", "beautiful", "smart"],
-    []
-  );
+  const titles = useMemo(() => ["amazing", "agentic", "developer"], []);
+  const session = useSession();
+  const user = session.data?.user;
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -30,7 +31,7 @@ export const Hero = () => {
         <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
           <div>
             <Button variant="secondary" size="sm" className="gap-4">
-              Read our launch article <MoveRight className="w-4 h-4" />
+              Read our features <MoveRight className="w-4 h-4" />
             </Button>
           </div>
           <div className="flex gap-4 flex-col">
@@ -63,19 +64,31 @@ export const Hero = () => {
             </h1>
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-              Managing a small business today is already tough. Avoid further
-              complications by ditching outdated, tedious trade methods. Our
-              goal is to streamline SMB trade, making it easier and faster than
-              ever.
+              Supercharge your development workflow with intelligent assistance.
+              Let AI handle the routine tasks while you focus on creative
+              problem-solving.
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Button size="lg" className="gap-4" variant="outline">
-              Jump on a call <PhoneCall className="w-4 h-4" />
-            </Button>
-            <Button size="lg" className="gap-4">
-              Sign up here <MoveRight className="w-4 h-4" />
-            </Button>
+            <Link href="/">
+              <Button size="lg" className="gap-4" variant="outline">
+                Jump on a call <PhoneCall className="w-4 h-4" />
+              </Button>
+            </Link>
+
+            {user ? (
+              <Link href="/get-started">
+                <Button size="lg" className="gap-4">
+                  Get Started <MoveRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/register">
+                <Button size="lg" className="gap-4">
+                  Sign up here <MoveRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

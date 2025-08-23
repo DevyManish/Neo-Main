@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-screen text-black dark:text-white z-40 fixed top-0 bg-white dark:bg-gray-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 dark:bg-opacity-20 border-none">
+    <header className="w-screen text-black dark:text-white z-40 fixed top-0 bg-white dark:bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 dark:bg-opacity-20 border-none">
       <nav className="container flex justify-between items-center mx-auto px-6 h-16 ">
         <div className="flex items-center mb-1 py-2 space-x-2">
           {/* <Image src="/logo.png" alt="Logo" width={95} height={95} /> */}
