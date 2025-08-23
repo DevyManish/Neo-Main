@@ -1,17 +1,23 @@
-type Props = {
-  params: Promise<{ projectId: string }>;
-};
+import { prisma } from "@/lib/db";
+import ChatClient from "./ChatClient";
+import { notFound } from "next/navigation";
 
-const page = async ({ params }: Props) => {
-  const projectId = (await params).projectId;
+export default async function ProjectPage({
+  params,
+}: {
+  params: { projectId: string };
+}) {
+  const project = await prisma.project.findUnique({
+    where: { id: params.projectId },
+    include: {
+      messages: {
+        orderBy: { createdAt: "asc" },
+        include: { fragement: true },
+      },
+    },
+  });
 
-  return (
-    <div className="flex items-center justify-center h-screen w-full">
-      <h2>Project: </h2>
-      <p>{projectId}</p>
-      <p>{projectId}</p>
-    </div>
-  );
-};
+  if (!project) return notFound();
 
-export default page;
+  return <ChatClient project={JSON.parse(JSON.stringify(project))} />;
+}

@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
+import { GlassNavbar } from "@/components/ui/navbar-menu";
 
 const Page = () => {
   const router = useRouter();
@@ -43,25 +44,28 @@ const Page = () => {
   }
 
   return (
-    <div className="flex flex-col w-full h-screen p-8">
-      <div className="font-semibold text-2xl">Projects</div>
+    <>
+      <GlassNavbar />
+      <div className="flex flex-col w-full h-screen p-8">
+        <div className="font-semibold text-2xl">Projects</div>
 
-      <div className="flex-1 bg-yellow-400 my-8">Content</div>
+        <div className="flex-1 bg-yellow-400 my-8">Content</div>
 
-      <div className="flex gap-4">
-        <Input
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="Enter your message"
-        />
-        <Button
-          disabled={createProject.isPending}
-          onClick={() => createProject.mutate({ value: value })}
-        >
-          Submit
-        </Button>
+        <div className="flex gap-4">
+          <Input
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="Enter your message"
+          />
+          <Button
+            disabled={createProject.isPending}
+            onClick={() => createProject.mutate({ value: value })}
+          >
+            Submit
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

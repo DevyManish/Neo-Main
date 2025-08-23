@@ -1,3 +1,4 @@
+import { GlassNavbar } from "@/components/ui/navbar-menu";
 import getSession from "@/lib/getSession";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -23,9 +24,12 @@ export default async function Page() {
   }
 
   return (
-    <main className="mx-auto my-10 space-y-3 flex flex-col w-full h-screen items-center justify-center">
-      <h1 className="text-center text-xl font-bold ">Admin Page</h1>
-      <p className="text-center">Welcome, admin!</p>
-    </main>
+    <>
+      <GlassNavbar />
+      <main className="mx-auto my-10 space-y-3 flex flex-col w-full h-screen items-center justify-center">
+        <h1 className="text-center text-xl font-bold ">Admin Page</h1>
+        <p className="text-center">Welcome, admin!</p>
+      </main>
+    </>
   );
 }
