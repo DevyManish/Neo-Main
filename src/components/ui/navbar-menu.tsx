@@ -38,7 +38,6 @@ export const GlassNavbar = () => {
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link
             href="/"
             className="flex items-center gap-2 text-2xl font-bold text-white"
@@ -47,7 +46,6 @@ export const GlassNavbar = () => {
             Neo
           </Link>
 
-          {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
@@ -64,12 +62,14 @@ export const GlassNavbar = () => {
             </Link>
           </div>
 
-          {/* User Profile */}
           <div className="flex items-center">
-            {/* <div className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
-              <span className="text-white text-sm font-semibold">U</span>
-            </div> */}
-            <UserButton user={user} />
+            {user ? (
+              <UserButton user={user} />
+            ) : (
+              <Link href="/login">
+                <Button className="rounded-3xl font-semibold">Login</Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
