@@ -19,18 +19,19 @@ export async function POST(req: Request) {
       {
         headers: {
           "Content-Type": "application/json",
-          "X-API-Key": process.env.VEXA_API_KEY,
+          "X-API-Key": "8aoVN6pTXCKvDKKs2rYd5QExom1ccZP2OIdxgKWS",
         },
       }
     );
 
+    console.log(res.data);
     const saveMeeting = await prisma.meeting.create({
       data: {
         meetId: meetId,
         botId: res.data.id.toString(),
         status: res.data.status,
         // startTime: res.data.start_time,
-        userId:"83f0575d-dd7c-48b3-8d41-d47b71cf1438"
+        userId:"d0ef6061-29a6-415d-a444-0d152861d340"
       },
     });
 
