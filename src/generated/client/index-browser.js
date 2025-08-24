@@ -188,6 +188,31 @@ exports.Prisma.FragementScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MeetingScalarFieldEnum = {
+  id: 'id',
+  meetId: 'meetId',
+  botId: 'botId',
+  userId: 'userId',
+  status: 'status',
+  constructedUrl: 'constructedUrl',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ConversationScalarFieldEnum = {
+  id: 'id',
+  meetingId: 'meetingId',
+  start: 'start',
+  end: 'end',
+  text: 'text',
+  language: 'language',
+  speaker: 'speaker',
+  absoluteStartTime: 'absoluteStartTime',
+  absoluteEndTime: 'absoluteEndTime'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -229,7 +254,9 @@ exports.Prisma.ModelName = {
   VerificationToken: 'VerificationToken',
   Project: 'Project',
   Message: 'Message',
-  Fragement: 'Fragement'
+  Fragement: 'Fragement',
+  Meeting: 'Meeting',
+  Conversation: 'Conversation'
 };
 
 /**

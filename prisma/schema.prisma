@@ -5,15 +5,13 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-  output          = "../src/generated/client"
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -25,6 +23,7 @@ model User {
   role          String?
   accounts      Account[]
   sessions      Session[]
+  meetings      Meeting[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -118,4 +117,34 @@ model Fragement {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Meeting {
+  id             String    @id @default(uuid())
+  meetId         String    @unique
+  botId          String
+  userId         String
+  status         String?
+  constructedUrl String?
+  startTime      DateTime?
+  endTime        DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  conversations Conversation[]
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Conversation {
+  id                String    @id @default(uuid())
+  meetingId         String
+  start             Float
+  end               Float
+  text              String
+  language          String
+  speaker           String?
+  absoluteStartTime DateTime?
+  absoluteEndTime   DateTime?
+
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
 }
