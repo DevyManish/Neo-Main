@@ -192,15 +192,15 @@ exports.Prisma.MeetingScalarFieldEnum = {
   id: 'id',
   meetId: 'meetId',
   botId: 'botId',
-  name: 'name',
   userId: 'userId',
   status: 'status',
   constructedUrl: 'constructedUrl',
   startTime: 'startTime',
   endTime: 'endTime',
-  summary: 'summary',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  summary: 'summary',
+  name: 'name'
 };
 
 exports.Prisma.ConversationScalarFieldEnum = {

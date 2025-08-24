@@ -1613,15 +1613,15 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
+    meetings: number
     accounts: number
     sessions: number
-    meetings: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meetings?: boolean | UserCountOutputTypeCountMeetingsArgs
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-    meetings?: boolean | UserCountOutputTypeCountMeetingsArgs
   }
 
   // Custom InputTypes
@@ -1638,6 +1638,13 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
+  export type UserCountOutputTypeCountMeetingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
   export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AccountWhereInput
   }
@@ -1647,13 +1654,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SessionWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountMeetingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MeetingWhereInput
   }
 
 
@@ -1911,9 +1911,9 @@ export namespace Prisma {
     role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    meetings?: boolean | User$meetingsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
-    meetings?: boolean | User$meetingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1952,9 +1952,9 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meetings?: boolean | User$meetingsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
-    meetings?: boolean | User$meetingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1963,9 +1963,9 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
+      meetings: Prisma.$MeetingPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
-      meetings: Prisma.$MeetingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2370,9 +2370,9 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    meetings<T extends User$meetingsArgs<ExtArgs> = {}>(args?: Subset<T, User$meetingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    meetings<T extends User$meetingsArgs<ExtArgs> = {}>(args?: Subset<T, User$meetingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2798,6 +2798,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.meetings
+   */
+  export type User$meetingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Meeting
+     */
+    select?: MeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Meeting
+     */
+    omit?: MeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingInclude<ExtArgs> | null
+    where?: MeetingWhereInput
+    orderBy?: MeetingOrderByWithRelationInput | MeetingOrderByWithRelationInput[]
+    cursor?: MeetingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MeetingScalarFieldEnum | MeetingScalarFieldEnum[]
+  }
+
+  /**
    * User.accounts
    */
   export type User$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2843,30 +2867,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
-  }
-
-  /**
-   * User.meetings
-   */
-  export type User$meetingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Meeting
-     */
-    select?: MeetingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Meeting
-     */
-    omit?: MeetingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MeetingInclude<ExtArgs> | null
-    where?: MeetingWhereInput
-    orderBy?: MeetingOrderByWithRelationInput | MeetingOrderByWithRelationInput[]
-    cursor?: MeetingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: MeetingScalarFieldEnum | MeetingScalarFieldEnum[]
   }
 
   /**
@@ -7348,8 +7348,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     projectId?: boolean
-    project?: boolean | ProjectDefaultArgs<ExtArgs>
     fragement?: boolean | Message$fragementArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7386,8 +7386,8 @@ export namespace Prisma {
 
   export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "role" | "type" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    project?: boolean | ProjectDefaultArgs<ExtArgs>
     fragement?: boolean | Message$fragementArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
   }
   export type MessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
@@ -7399,8 +7399,8 @@ export namespace Prisma {
   export type $MessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Message"
     objects: {
-      project: Prisma.$ProjectPayload<ExtArgs>
       fragement: Prisma.$FragementPayload<ExtArgs> | null
+      project: Prisma.$ProjectPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7804,8 +7804,8 @@ export namespace Prisma {
    */
   export interface Prisma__MessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     fragement<T extends Message$fragementArgs<ExtArgs> = {}>(args?: Subset<T, Message$fragementArgs<ExtArgs>>): Prisma__FragementClient<$Result.GetResult<Prisma.$FragementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9369,45 +9369,45 @@ export namespace Prisma {
     id: string | null
     meetId: string | null
     botId: string | null
-    name: string | null
     userId: string | null
     status: string | null
     constructedUrl: string | null
     startTime: Date | null
     endTime: Date | null
-    summary: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    summary: string | null
+    name: string | null
   }
 
   export type MeetingMaxAggregateOutputType = {
     id: string | null
     meetId: string | null
     botId: string | null
-    name: string | null
     userId: string | null
     status: string | null
     constructedUrl: string | null
     startTime: Date | null
     endTime: Date | null
-    summary: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    summary: string | null
+    name: string | null
   }
 
   export type MeetingCountAggregateOutputType = {
     id: number
     meetId: number
     botId: number
-    name: number
     userId: number
     status: number
     constructedUrl: number
     startTime: number
     endTime: number
-    summary: number
     createdAt: number
     updatedAt: number
+    summary: number
+    name: number
     _all: number
   }
 
@@ -9416,45 +9416,45 @@ export namespace Prisma {
     id?: true
     meetId?: true
     botId?: true
-    name?: true
     userId?: true
     status?: true
     constructedUrl?: true
     startTime?: true
     endTime?: true
-    summary?: true
     createdAt?: true
     updatedAt?: true
+    summary?: true
+    name?: true
   }
 
   export type MeetingMaxAggregateInputType = {
     id?: true
     meetId?: true
     botId?: true
-    name?: true
     userId?: true
     status?: true
     constructedUrl?: true
     startTime?: true
     endTime?: true
-    summary?: true
     createdAt?: true
     updatedAt?: true
+    summary?: true
+    name?: true
   }
 
   export type MeetingCountAggregateInputType = {
     id?: true
     meetId?: true
     botId?: true
-    name?: true
     userId?: true
     status?: true
     constructedUrl?: true
     startTime?: true
     endTime?: true
-    summary?: true
     createdAt?: true
     updatedAt?: true
+    summary?: true
+    name?: true
     _all?: true
   }
 
@@ -9534,15 +9534,15 @@ export namespace Prisma {
     id: string
     meetId: string
     botId: string
-    name: string
     userId: string
     status: string | null
     constructedUrl: string | null
     startTime: Date | null
     endTime: Date | null
-    summary: string | null
     createdAt: Date
     updatedAt: Date
+    summary: string | null
+    name: string
     _count: MeetingCountAggregateOutputType | null
     _min: MeetingMinAggregateOutputType | null
     _max: MeetingMaxAggregateOutputType | null
@@ -9566,15 +9566,15 @@ export namespace Prisma {
     id?: boolean
     meetId?: boolean
     botId?: boolean
-    name?: boolean
     userId?: boolean
     status?: boolean
     constructedUrl?: boolean
     startTime?: boolean
     endTime?: boolean
-    summary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    summary?: boolean
+    name?: boolean
     conversations?: boolean | Meeting$conversationsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | MeetingCountOutputTypeDefaultArgs<ExtArgs>
@@ -9584,15 +9584,15 @@ export namespace Prisma {
     id?: boolean
     meetId?: boolean
     botId?: boolean
-    name?: boolean
     userId?: boolean
     status?: boolean
     constructedUrl?: boolean
     startTime?: boolean
     endTime?: boolean
-    summary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    summary?: boolean
+    name?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["meeting"]>
 
@@ -9600,15 +9600,15 @@ export namespace Prisma {
     id?: boolean
     meetId?: boolean
     botId?: boolean
-    name?: boolean
     userId?: boolean
     status?: boolean
     constructedUrl?: boolean
     startTime?: boolean
     endTime?: boolean
-    summary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    summary?: boolean
+    name?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["meeting"]>
 
@@ -9616,18 +9616,18 @@ export namespace Prisma {
     id?: boolean
     meetId?: boolean
     botId?: boolean
-    name?: boolean
     userId?: boolean
     status?: boolean
     constructedUrl?: boolean
     startTime?: boolean
     endTime?: boolean
-    summary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    summary?: boolean
+    name?: boolean
   }
 
-  export type MeetingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "meetId" | "botId" | "name" | "userId" | "status" | "constructedUrl" | "startTime" | "endTime" | "summary" | "createdAt" | "updatedAt", ExtArgs["result"]["meeting"]>
+  export type MeetingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "meetId" | "botId" | "userId" | "status" | "constructedUrl" | "startTime" | "endTime" | "createdAt" | "updatedAt" | "summary" | "name", ExtArgs["result"]["meeting"]>
   export type MeetingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     conversations?: boolean | Meeting$conversationsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -9650,15 +9650,15 @@ export namespace Prisma {
       id: string
       meetId: string
       botId: string
-      name: string
       userId: string
       status: string | null
       constructedUrl: string | null
       startTime: Date | null
       endTime: Date | null
-      summary: string | null
       createdAt: Date
       updatedAt: Date
+      summary: string | null
+      name: string
     }, ExtArgs["result"]["meeting"]>
     composites: {}
   }
@@ -10087,15 +10087,15 @@ export namespace Prisma {
     readonly id: FieldRef<"Meeting", 'String'>
     readonly meetId: FieldRef<"Meeting", 'String'>
     readonly botId: FieldRef<"Meeting", 'String'>
-    readonly name: FieldRef<"Meeting", 'String'>
     readonly userId: FieldRef<"Meeting", 'String'>
     readonly status: FieldRef<"Meeting", 'String'>
     readonly constructedUrl: FieldRef<"Meeting", 'String'>
     readonly startTime: FieldRef<"Meeting", 'DateTime'>
     readonly endTime: FieldRef<"Meeting", 'DateTime'>
-    readonly summary: FieldRef<"Meeting", 'String'>
     readonly createdAt: FieldRef<"Meeting", 'DateTime'>
     readonly updatedAt: FieldRef<"Meeting", 'DateTime'>
+    readonly summary: FieldRef<"Meeting", 'String'>
+    readonly name: FieldRef<"Meeting", 'String'>
   }
     
 
@@ -11789,15 +11789,15 @@ export namespace Prisma {
     id: 'id',
     meetId: 'meetId',
     botId: 'botId',
-    name: 'name',
     userId: 'userId',
     status: 'status',
     constructedUrl: 'constructedUrl',
     startTime: 'startTime',
     endTime: 'endTime',
-    summary: 'summary',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    summary: 'summary',
+    name: 'name'
   };
 
   export type MeetingScalarFieldEnum = (typeof MeetingScalarFieldEnum)[keyof typeof MeetingScalarFieldEnum]
@@ -11976,9 +11976,9 @@ export namespace Prisma {
     role?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    meetings?: MeetingListRelationFilter
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
-    meetings?: MeetingListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -11990,9 +11990,9 @@ export namespace Prisma {
     role?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    meetings?: MeetingOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
-    meetings?: MeetingOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12007,9 +12007,9 @@ export namespace Prisma {
     role?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    meetings?: MeetingListRelationFilter
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
-    meetings?: MeetingListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -12297,8 +12297,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Message"> | Date | string
     updatedAt?: DateTimeFilter<"Message"> | Date | string
     projectId?: StringFilter<"Message"> | string
-    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     fragement?: XOR<FragementNullableScalarRelationFilter, FragementWhereInput> | null
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
   }
 
   export type MessageOrderByWithRelationInput = {
@@ -12309,8 +12309,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
-    project?: ProjectOrderByWithRelationInput
     fragement?: FragementOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
   }
 
   export type MessageWhereUniqueInput = Prisma.AtLeast<{
@@ -12324,8 +12324,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Message"> | Date | string
     updatedAt?: DateTimeFilter<"Message"> | Date | string
     projectId?: StringFilter<"Message"> | string
-    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     fragement?: XOR<FragementNullableScalarRelationFilter, FragementWhereInput> | null
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
   }, "id">
 
   export type MessageOrderByWithAggregationInput = {
@@ -12426,15 +12426,15 @@ export namespace Prisma {
     id?: StringFilter<"Meeting"> | string
     meetId?: StringFilter<"Meeting"> | string
     botId?: StringFilter<"Meeting"> | string
-    name?: StringFilter<"Meeting"> | string
     userId?: StringFilter<"Meeting"> | string
     status?: StringNullableFilter<"Meeting"> | string | null
     constructedUrl?: StringNullableFilter<"Meeting"> | string | null
     startTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
     endTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
-    summary?: StringNullableFilter<"Meeting"> | string | null
     createdAt?: DateTimeFilter<"Meeting"> | Date | string
     updatedAt?: DateTimeFilter<"Meeting"> | Date | string
+    summary?: StringNullableFilter<"Meeting"> | string | null
+    name?: StringFilter<"Meeting"> | string
     conversations?: ConversationListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -12443,15 +12443,15 @@ export namespace Prisma {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
-    name?: SortOrder
     userId?: SortOrder
     status?: SortOrderInput | SortOrder
     constructedUrl?: SortOrderInput | SortOrder
     startTime?: SortOrderInput | SortOrder
     endTime?: SortOrderInput | SortOrder
-    summary?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    summary?: SortOrderInput | SortOrder
+    name?: SortOrder
     conversations?: ConversationOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
   }
@@ -12463,15 +12463,15 @@ export namespace Prisma {
     OR?: MeetingWhereInput[]
     NOT?: MeetingWhereInput | MeetingWhereInput[]
     botId?: StringFilter<"Meeting"> | string
-    name?: StringFilter<"Meeting"> | string
     userId?: StringFilter<"Meeting"> | string
     status?: StringNullableFilter<"Meeting"> | string | null
     constructedUrl?: StringNullableFilter<"Meeting"> | string | null
     startTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
     endTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
-    summary?: StringNullableFilter<"Meeting"> | string | null
     createdAt?: DateTimeFilter<"Meeting"> | Date | string
     updatedAt?: DateTimeFilter<"Meeting"> | Date | string
+    summary?: StringNullableFilter<"Meeting"> | string | null
+    name?: StringFilter<"Meeting"> | string
     conversations?: ConversationListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "meetId">
@@ -12480,15 +12480,15 @@ export namespace Prisma {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
-    name?: SortOrder
     userId?: SortOrder
     status?: SortOrderInput | SortOrder
     constructedUrl?: SortOrderInput | SortOrder
     startTime?: SortOrderInput | SortOrder
     endTime?: SortOrderInput | SortOrder
-    summary?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    summary?: SortOrderInput | SortOrder
+    name?: SortOrder
     _count?: MeetingCountOrderByAggregateInput
     _max?: MeetingMaxOrderByAggregateInput
     _min?: MeetingMinOrderByAggregateInput
@@ -12501,15 +12501,15 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Meeting"> | string
     meetId?: StringWithAggregatesFilter<"Meeting"> | string
     botId?: StringWithAggregatesFilter<"Meeting"> | string
-    name?: StringWithAggregatesFilter<"Meeting"> | string
     userId?: StringWithAggregatesFilter<"Meeting"> | string
     status?: StringNullableWithAggregatesFilter<"Meeting"> | string | null
     constructedUrl?: StringNullableWithAggregatesFilter<"Meeting"> | string | null
     startTime?: DateTimeNullableWithAggregatesFilter<"Meeting"> | Date | string | null
     endTime?: DateTimeNullableWithAggregatesFilter<"Meeting"> | Date | string | null
-    summary?: StringNullableWithAggregatesFilter<"Meeting"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Meeting"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Meeting"> | Date | string
+    summary?: StringNullableWithAggregatesFilter<"Meeting"> | string | null
+    name?: StringWithAggregatesFilter<"Meeting"> | string
   }
 
   export type ConversationWhereInput = {
@@ -12598,9 +12598,9 @@ export namespace Prisma {
     role?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    meetings?: MeetingCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
-    meetings?: MeetingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -12612,9 +12612,9 @@ export namespace Prisma {
     role?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    meetings?: MeetingUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    meetings?: MeetingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -12626,9 +12626,9 @@ export namespace Prisma {
     role?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetings?: MeetingUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    meetings?: MeetingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -12640,9 +12640,9 @@ export namespace Prisma {
     role?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetings?: MeetingUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    meetings?: MeetingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -12946,8 +12946,8 @@ export namespace Prisma {
     type: $Enums.MessageType
     createdAt?: Date | string
     updatedAt?: Date | string
-    project: ProjectCreateNestedOneWithoutMessagesInput
     fragement?: FragementCreateNestedOneWithoutMessageInput
+    project: ProjectCreateNestedOneWithoutMessagesInput
   }
 
   export type MessageUncheckedCreateInput = {
@@ -12968,8 +12968,8 @@ export namespace Prisma {
     type?: EnumMessageTypeFieldUpdateOperationsInput | $Enums.MessageType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    project?: ProjectUpdateOneRequiredWithoutMessagesNestedInput
     fragement?: FragementUpdateOneWithoutMessageNestedInput
+    project?: ProjectUpdateOneRequiredWithoutMessagesNestedInput
   }
 
   export type MessageUncheckedUpdateInput = {
@@ -13085,14 +13085,14 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
-    name: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
-    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    summary?: string | null
+    name: string
     conversations?: ConversationCreateNestedManyWithoutMeetingInput
     user: UserCreateNestedOneWithoutMeetingsInput
   }
@@ -13101,15 +13101,15 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
-    name: string
     userId: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
-    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    summary?: string | null
+    name: string
     conversations?: ConversationUncheckedCreateNestedManyWithoutMeetingInput
   }
 
@@ -13117,14 +13117,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     conversations?: ConversationUpdateManyWithoutMeetingNestedInput
     user?: UserUpdateOneRequiredWithoutMeetingsNestedInput
   }
@@ -13133,15 +13133,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     conversations?: ConversationUncheckedUpdateManyWithoutMeetingNestedInput
   }
 
@@ -13149,44 +13149,44 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
-    name: string
     userId: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
-    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    summary?: string | null
+    name: string
   }
 
   export type MeetingUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type MeetingUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type ConversationCreateInput = {
@@ -13324,6 +13324,12 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type MeetingListRelationFilter = {
+    every?: MeetingWhereInput
+    some?: MeetingWhereInput
+    none?: MeetingWhereInput
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -13336,15 +13342,13 @@ export namespace Prisma {
     none?: SessionWhereInput
   }
 
-  export type MeetingListRelationFilter = {
-    every?: MeetingWhereInput
-    some?: MeetingWhereInput
-    none?: MeetingWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type MeetingOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type AccountOrderByRelationAggregateInput = {
@@ -13352,10 +13356,6 @@ export namespace Prisma {
   }
 
   export type SessionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type MeetingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13641,14 +13641,14 @@ export namespace Prisma {
     not?: NestedEnumMessageTypeFilter<$PrismaModel> | $Enums.MessageType
   }
 
-  export type ProjectScalarRelationFilter = {
-    is?: ProjectWhereInput
-    isNot?: ProjectWhereInput
-  }
-
   export type FragementNullableScalarRelationFilter = {
     is?: FragementWhereInput | null
     isNot?: FragementWhereInput | null
+  }
+
+  export type ProjectScalarRelationFilter = {
+    is?: ProjectWhereInput
+    isNot?: ProjectWhereInput
   }
 
   export type MessageCountOrderByAggregateInput = {
@@ -13797,45 +13797,45 @@ export namespace Prisma {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
-    name?: SortOrder
     userId?: SortOrder
     status?: SortOrder
     constructedUrl?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
-    summary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    summary?: SortOrder
+    name?: SortOrder
   }
 
   export type MeetingMaxOrderByAggregateInput = {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
-    name?: SortOrder
     userId?: SortOrder
     status?: SortOrder
     constructedUrl?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
-    summary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    summary?: SortOrder
+    name?: SortOrder
   }
 
   export type MeetingMinOrderByAggregateInput = {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
-    name?: SortOrder
     userId?: SortOrder
     status?: SortOrder
     constructedUrl?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
-    summary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    summary?: SortOrder
+    name?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -13916,6 +13916,13 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type MeetingCreateNestedManyWithoutUserInput = {
+    create?: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput> | MeetingCreateWithoutUserInput[] | MeetingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MeetingCreateOrConnectWithoutUserInput | MeetingCreateOrConnectWithoutUserInput[]
+    createMany?: MeetingCreateManyUserInputEnvelope
+    connect?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -13930,7 +13937,7 @@ export namespace Prisma {
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type MeetingCreateNestedManyWithoutUserInput = {
+  export type MeetingUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput> | MeetingCreateWithoutUserInput[] | MeetingUncheckedCreateWithoutUserInput[]
     connectOrCreate?: MeetingCreateOrConnectWithoutUserInput | MeetingCreateOrConnectWithoutUserInput[]
     createMany?: MeetingCreateManyUserInputEnvelope
@@ -13951,13 +13958,6 @@ export namespace Prisma {
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type MeetingUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput> | MeetingCreateWithoutUserInput[] | MeetingUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MeetingCreateOrConnectWithoutUserInput | MeetingCreateOrConnectWithoutUserInput[]
-    createMany?: MeetingCreateManyUserInputEnvelope
-    connect?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -13972,6 +13972,20 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type MeetingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput> | MeetingCreateWithoutUserInput[] | MeetingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MeetingCreateOrConnectWithoutUserInput | MeetingCreateOrConnectWithoutUserInput[]
+    upsert?: MeetingUpsertWithWhereUniqueWithoutUserInput | MeetingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MeetingCreateManyUserInputEnvelope
+    set?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
+    disconnect?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
+    delete?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
+    connect?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
+    update?: MeetingUpdateWithWhereUniqueWithoutUserInput | MeetingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MeetingUpdateManyWithWhereWithoutUserInput | MeetingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MeetingScalarWhereInput | MeetingScalarWhereInput[]
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -14002,7 +14016,7 @@ export namespace Prisma {
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
-  export type MeetingUpdateManyWithoutUserNestedInput = {
+  export type MeetingUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput> | MeetingCreateWithoutUserInput[] | MeetingUncheckedCreateWithoutUserInput[]
     connectOrCreate?: MeetingCreateOrConnectWithoutUserInput | MeetingCreateOrConnectWithoutUserInput[]
     upsert?: MeetingUpsertWithWhereUniqueWithoutUserInput | MeetingUpsertWithWhereUniqueWithoutUserInput[]
@@ -14042,20 +14056,6 @@ export namespace Prisma {
     update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type MeetingUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput> | MeetingCreateWithoutUserInput[] | MeetingUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MeetingCreateOrConnectWithoutUserInput | MeetingCreateOrConnectWithoutUserInput[]
-    upsert?: MeetingUpsertWithWhereUniqueWithoutUserInput | MeetingUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MeetingCreateManyUserInputEnvelope
-    set?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
-    disconnect?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
-    delete?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
-    connect?: MeetingWhereUniqueInput | MeetingWhereUniqueInput[]
-    update?: MeetingUpdateWithWhereUniqueWithoutUserInput | MeetingUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MeetingUpdateManyWithWhereWithoutUserInput | MeetingUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MeetingScalarWhereInput | MeetingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -14136,16 +14136,16 @@ export namespace Prisma {
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
-  export type ProjectCreateNestedOneWithoutMessagesInput = {
-    create?: XOR<ProjectCreateWithoutMessagesInput, ProjectUncheckedCreateWithoutMessagesInput>
-    connectOrCreate?: ProjectCreateOrConnectWithoutMessagesInput
-    connect?: ProjectWhereUniqueInput
-  }
-
   export type FragementCreateNestedOneWithoutMessageInput = {
     create?: XOR<FragementCreateWithoutMessageInput, FragementUncheckedCreateWithoutMessageInput>
     connectOrCreate?: FragementCreateOrConnectWithoutMessageInput
     connect?: FragementWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedOneWithoutMessagesInput = {
+    create?: XOR<ProjectCreateWithoutMessagesInput, ProjectUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutMessagesInput
+    connect?: ProjectWhereUniqueInput
   }
 
   export type FragementUncheckedCreateNestedOneWithoutMessageInput = {
@@ -14162,14 +14162,6 @@ export namespace Prisma {
     set?: $Enums.MessageType
   }
 
-  export type ProjectUpdateOneRequiredWithoutMessagesNestedInput = {
-    create?: XOR<ProjectCreateWithoutMessagesInput, ProjectUncheckedCreateWithoutMessagesInput>
-    connectOrCreate?: ProjectCreateOrConnectWithoutMessagesInput
-    upsert?: ProjectUpsertWithoutMessagesInput
-    connect?: ProjectWhereUniqueInput
-    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutMessagesInput, ProjectUpdateWithoutMessagesInput>, ProjectUncheckedUpdateWithoutMessagesInput>
-  }
-
   export type FragementUpdateOneWithoutMessageNestedInput = {
     create?: XOR<FragementCreateWithoutMessageInput, FragementUncheckedCreateWithoutMessageInput>
     connectOrCreate?: FragementCreateOrConnectWithoutMessageInput
@@ -14178,6 +14170,14 @@ export namespace Prisma {
     delete?: FragementWhereInput | boolean
     connect?: FragementWhereUniqueInput
     update?: XOR<XOR<FragementUpdateToOneWithWhereWithoutMessageInput, FragementUpdateWithoutMessageInput>, FragementUncheckedUpdateWithoutMessageInput>
+  }
+
+  export type ProjectUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<ProjectCreateWithoutMessagesInput, ProjectUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutMessagesInput
+    upsert?: ProjectUpsertWithoutMessagesInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutMessagesInput, ProjectUpdateWithoutMessagesInput>, ProjectUncheckedUpdateWithoutMessagesInput>
   }
 
   export type FragementUncheckedUpdateOneWithoutMessageNestedInput = {
@@ -14527,6 +14527,46 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type MeetingCreateWithoutUserInput = {
+    id?: string
+    meetId: string
+    botId: string
+    status?: string | null
+    constructedUrl?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    summary?: string | null
+    name: string
+    conversations?: ConversationCreateNestedManyWithoutMeetingInput
+  }
+
+  export type MeetingUncheckedCreateWithoutUserInput = {
+    id?: string
+    meetId: string
+    botId: string
+    status?: string | null
+    constructedUrl?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    summary?: string | null
+    name: string
+    conversations?: ConversationUncheckedCreateNestedManyWithoutMeetingInput
+  }
+
+  export type MeetingCreateOrConnectWithoutUserInput = {
+    where: MeetingWhereUniqueInput
+    create: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput>
+  }
+
+  export type MeetingCreateManyUserInputEnvelope = {
+    data: MeetingCreateManyUserInput | MeetingCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountCreateWithoutUserInput = {
     type: string
     provider: string
@@ -14591,44 +14631,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type MeetingCreateWithoutUserInput = {
-    id?: string
-    meetId: string
-    botId: string
-    name: string
-    status?: string | null
-    constructedUrl?: string | null
-    startTime?: Date | string | null
-    endTime?: Date | string | null
-    summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    conversations?: ConversationCreateNestedManyWithoutMeetingInput
-  }
-
-  export type MeetingUncheckedCreateWithoutUserInput = {
-    id?: string
-    meetId: string
-    botId: string
-    name: string
-    status?: string | null
-    constructedUrl?: string | null
-    startTime?: Date | string | null
-    endTime?: Date | string | null
-    summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    conversations?: ConversationUncheckedCreateNestedManyWithoutMeetingInput
-  }
-
-  export type MeetingCreateOrConnectWithoutUserInput = {
+  export type MeetingUpsertWithWhereUniqueWithoutUserInput = {
     where: MeetingWhereUniqueInput
+    update: XOR<MeetingUpdateWithoutUserInput, MeetingUncheckedUpdateWithoutUserInput>
     create: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput>
   }
 
-  export type MeetingCreateManyUserInputEnvelope = {
-    data: MeetingCreateManyUserInput | MeetingCreateManyUserInput[]
-    skipDuplicates?: boolean
+  export type MeetingUpdateWithWhereUniqueWithoutUserInput = {
+    where: MeetingWhereUniqueInput
+    data: XOR<MeetingUpdateWithoutUserInput, MeetingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MeetingUpdateManyWithWhereWithoutUserInput = {
+    where: MeetingScalarWhereInput
+    data: XOR<MeetingUpdateManyMutationInput, MeetingUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MeetingScalarWhereInput = {
+    AND?: MeetingScalarWhereInput | MeetingScalarWhereInput[]
+    OR?: MeetingScalarWhereInput[]
+    NOT?: MeetingScalarWhereInput | MeetingScalarWhereInput[]
+    id?: StringFilter<"Meeting"> | string
+    meetId?: StringFilter<"Meeting"> | string
+    botId?: StringFilter<"Meeting"> | string
+    userId?: StringFilter<"Meeting"> | string
+    status?: StringNullableFilter<"Meeting"> | string | null
+    constructedUrl?: StringNullableFilter<"Meeting"> | string | null
+    startTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
+    createdAt?: DateTimeFilter<"Meeting"> | Date | string
+    updatedAt?: DateTimeFilter<"Meeting"> | Date | string
+    summary?: StringNullableFilter<"Meeting"> | string | null
+    name?: StringFilter<"Meeting"> | string
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -14693,40 +14727,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Session"> | Date | string
   }
 
-  export type MeetingUpsertWithWhereUniqueWithoutUserInput = {
-    where: MeetingWhereUniqueInput
-    update: XOR<MeetingUpdateWithoutUserInput, MeetingUncheckedUpdateWithoutUserInput>
-    create: XOR<MeetingCreateWithoutUserInput, MeetingUncheckedCreateWithoutUserInput>
-  }
-
-  export type MeetingUpdateWithWhereUniqueWithoutUserInput = {
-    where: MeetingWhereUniqueInput
-    data: XOR<MeetingUpdateWithoutUserInput, MeetingUncheckedUpdateWithoutUserInput>
-  }
-
-  export type MeetingUpdateManyWithWhereWithoutUserInput = {
-    where: MeetingScalarWhereInput
-    data: XOR<MeetingUpdateManyMutationInput, MeetingUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type MeetingScalarWhereInput = {
-    AND?: MeetingScalarWhereInput | MeetingScalarWhereInput[]
-    OR?: MeetingScalarWhereInput[]
-    NOT?: MeetingScalarWhereInput | MeetingScalarWhereInput[]
-    id?: StringFilter<"Meeting"> | string
-    meetId?: StringFilter<"Meeting"> | string
-    botId?: StringFilter<"Meeting"> | string
-    name?: StringFilter<"Meeting"> | string
-    userId?: StringFilter<"Meeting"> | string
-    status?: StringNullableFilter<"Meeting"> | string | null
-    constructedUrl?: StringNullableFilter<"Meeting"> | string | null
-    startTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
-    endTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
-    summary?: StringNullableFilter<"Meeting"> | string | null
-    createdAt?: DateTimeFilter<"Meeting"> | Date | string
-    updatedAt?: DateTimeFilter<"Meeting"> | Date | string
-  }
-
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -14736,8 +14736,8 @@ export namespace Prisma {
     role?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
     meetings?: MeetingCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -14749,8 +14749,8 @@ export namespace Prisma {
     role?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     meetings?: MeetingUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -14778,8 +14778,8 @@ export namespace Prisma {
     role?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
     meetings?: MeetingUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -14791,8 +14791,8 @@ export namespace Prisma {
     role?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     meetings?: MeetingUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -14804,8 +14804,8 @@ export namespace Prisma {
     role?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    accounts?: AccountCreateNestedManyWithoutUserInput
     meetings?: MeetingCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -14817,8 +14817,8 @@ export namespace Prisma {
     role?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     meetings?: MeetingUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -14846,8 +14846,8 @@ export namespace Prisma {
     role?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUpdateManyWithoutUserNestedInput
     meetings?: MeetingUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -14859,8 +14859,8 @@ export namespace Prisma {
     role?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     meetings?: MeetingUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MessageCreateWithoutProjectInput = {
@@ -14922,25 +14922,6 @@ export namespace Prisma {
     projectId?: StringFilter<"Message"> | string
   }
 
-  export type ProjectCreateWithoutMessagesInput = {
-    id?: string
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ProjectUncheckedCreateWithoutMessagesInput = {
-    id?: string
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ProjectCreateOrConnectWithoutMessagesInput = {
-    where: ProjectWhereUniqueInput
-    create: XOR<ProjectCreateWithoutMessagesInput, ProjectUncheckedCreateWithoutMessagesInput>
-  }
-
   export type FragementCreateWithoutMessageInput = {
     id?: string
     sandboxUrl: string
@@ -14964,29 +14945,23 @@ export namespace Prisma {
     create: XOR<FragementCreateWithoutMessageInput, FragementUncheckedCreateWithoutMessageInput>
   }
 
-  export type ProjectUpsertWithoutMessagesInput = {
-    update: XOR<ProjectUpdateWithoutMessagesInput, ProjectUncheckedUpdateWithoutMessagesInput>
+  export type ProjectCreateWithoutMessagesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectUncheckedCreateWithoutMessagesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectCreateOrConnectWithoutMessagesInput = {
+    where: ProjectWhereUniqueInput
     create: XOR<ProjectCreateWithoutMessagesInput, ProjectUncheckedCreateWithoutMessagesInput>
-    where?: ProjectWhereInput
-  }
-
-  export type ProjectUpdateToOneWithWhereWithoutMessagesInput = {
-    where?: ProjectWhereInput
-    data: XOR<ProjectUpdateWithoutMessagesInput, ProjectUncheckedUpdateWithoutMessagesInput>
-  }
-
-  export type ProjectUpdateWithoutMessagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ProjectUncheckedUpdateWithoutMessagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FragementUpsertWithoutMessageInput = {
@@ -15014,6 +14989,31 @@ export namespace Prisma {
     sandboxUrl?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     files?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpsertWithoutMessagesInput = {
+    update: XOR<ProjectUpdateWithoutMessagesInput, ProjectUncheckedUpdateWithoutMessagesInput>
+    create: XOR<ProjectCreateWithoutMessagesInput, ProjectUncheckedCreateWithoutMessagesInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutMessagesInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutMessagesInput, ProjectUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type ProjectUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUncheckedUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15209,14 +15209,14 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
-    name: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
-    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    summary?: string | null
+    name: string
     user: UserCreateNestedOneWithoutMeetingsInput
   }
 
@@ -15224,15 +15224,15 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
-    name: string
     userId: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
-    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    summary?: string | null
+    name: string
   }
 
   export type MeetingCreateOrConnectWithoutConversationsInput = {
@@ -15255,14 +15255,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutMeetingsNestedInput
   }
 
@@ -15270,15 +15270,29 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MeetingCreateManyUserInput = {
+    id?: string
+    meetId: string
+    botId: string
+    status?: string | null
+    constructedUrl?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    summary?: string | null
+    name: string
   }
 
   export type AccountCreateManyUserInput = {
@@ -15303,18 +15317,48 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type MeetingCreateManyUserInput = {
-    id?: string
-    meetId: string
-    botId: string
-    name: string
-    status?: string | null
-    constructedUrl?: string | null
-    startTime?: Date | string | null
-    endTime?: Date | string | null
-    summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type MeetingUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    meetId?: StringFieldUpdateOperationsInput | string
+    botId?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    conversations?: ConversationUpdateManyWithoutMeetingNestedInput
+  }
+
+  export type MeetingUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    meetId?: StringFieldUpdateOperationsInput | string
+    botId?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    conversations?: ConversationUncheckedUpdateManyWithoutMeetingNestedInput
+  }
+
+  export type MeetingUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    meetId?: StringFieldUpdateOperationsInput | string
+    botId?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -15379,50 +15423,6 @@ export namespace Prisma {
   export type SessionUncheckedUpdateManyWithoutUserInput = {
     sessionToken?: StringFieldUpdateOperationsInput | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type MeetingUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    meetId?: StringFieldUpdateOperationsInput | string
-    botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    conversations?: ConversationUpdateManyWithoutMeetingNestedInput
-  }
-
-  export type MeetingUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    meetId?: StringFieldUpdateOperationsInput | string
-    botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    conversations?: ConversationUncheckedUpdateManyWithoutMeetingNestedInput
-  }
-
-  export type MeetingUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    meetId?: StringFieldUpdateOperationsInput | string
-    botId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

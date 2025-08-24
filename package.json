@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate",
+    "build": "prisma generate && next build --turbopack"
   },
   "dependencies": {
     "@e2b/code-interpreter": "^2.0.0",

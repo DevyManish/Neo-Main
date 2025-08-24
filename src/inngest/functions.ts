@@ -1,13 +1,10 @@
 import { z } from "zod";
 import { Sandbox } from "@e2b/code-interpreter";
 import {
-  openai,
   gemini,
   createAgent,
   createTool,
-  AnyZodType,
   createNetwork,
-  Agent,
   type Tool,
 } from "@inngest/agent-kit";
 
