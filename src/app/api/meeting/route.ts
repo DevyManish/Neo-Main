@@ -1,14 +1,28 @@
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import axios from "axios";
+import { generateSlug } from "random-word-slugs";
 
+export async function GET() {
+  try {
+    const meetings = await prisma.meeting.findMany();
+    return Response.json({ success: true, data: meetings }, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return Response.json({ success: false, data: null }, { status: 500 });
+  }
+}
 
 export async function POST(req: Request) {
   const { meetId } = await req.json();
   try {
     // const meetId = meetLink.split("/")[1];
+    const session = await auth();
+    if (!session || !session.user) {
+      return Response.json({ success: false, data: null }, { status: 500 });
+    }
 
-    console.log(meetId)
+    console.log(meetId);
     const res = await axios.post(
       "https://gateway.dev.vexa.ai/bots",
       {
@@ -28,16 +42,19 @@ export async function POST(req: Request) {
     const saveMeeting = await prisma.meeting.create({
       data: {
         meetId: meetId,
+        name: generateSlug(2, {
+          format: "kebab",
+        }),
         botId: res.data.id.toString(),
         status: res.data.status,
         // startTime: res.data.start_time,
-        userId:"d0ef6061-29a6-415d-a444-0d152861d340"
+        userId: "431aa3f5-cfbe-456c-9bcb-1486a8d3f620",
       },
     });
 
     return Response.json({ success: true, data: saveMeeting }, { status: 200 });
   } catch (error) {
-    console.log(error)
-    return Response.json({success:false, data:null},{status:500});
+    console.log(error);
+    return Response.json({ success: false, data: null }, { status: 500 });
   }
 }

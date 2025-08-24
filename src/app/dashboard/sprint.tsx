@@ -1,6 +1,7 @@
 import { SprintCard } from "@/components/sprint-card";
 import { Button } from "@/components/ui/button";
 import { Calendar, Plus } from "lucide-react";
+import Link from "next/link";
 
 export const Sprint = () => {
   return (
@@ -19,9 +20,13 @@ export const Sprint = () => {
         </Button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-        <SprintCard title="Sprint Planning" date="Today, 2:00 PM" />
+        <Link href="/sprints/create">
+          <SprintCard title="Sprint Planning" date="Today, 2:00 PM" />
+        </Link>
         <SprintCard title="Daily Standup" date="Tomorrow, 9:00 AM" />
-        <SprintCard title="Sprint Review" date="Friday, 3:00 PM" />
+        <Link href="/sprints">
+          <SprintCard title="Sprint Review" date="Friday, 3:00 PM" />
+        </Link>
       </div>
     </div>
   );

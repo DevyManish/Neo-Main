@@ -50,11 +50,8 @@ export const Project = () => {
             <div className="text-white col-span-full">No projects found.</div>
           ) : (
             projects.map((project) => (
-              <Link href={"project/" + project.id}>
-                <ProjectCard
-                  key={project.id}
-                  title={project.title || project.name}
-                />
+              <Link href={"project/" + project.id} key={project.id}>
+                <ProjectCard title={project.title || project.name} />
               </Link>
             ))
           )}

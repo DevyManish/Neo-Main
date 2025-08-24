@@ -9369,11 +9369,13 @@ export namespace Prisma {
     id: string | null
     meetId: string | null
     botId: string | null
+    name: string | null
     userId: string | null
     status: string | null
     constructedUrl: string | null
     startTime: Date | null
     endTime: Date | null
+    summary: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9382,11 +9384,13 @@ export namespace Prisma {
     id: string | null
     meetId: string | null
     botId: string | null
+    name: string | null
     userId: string | null
     status: string | null
     constructedUrl: string | null
     startTime: Date | null
     endTime: Date | null
+    summary: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9395,11 +9399,13 @@ export namespace Prisma {
     id: number
     meetId: number
     botId: number
+    name: number
     userId: number
     status: number
     constructedUrl: number
     startTime: number
     endTime: number
+    summary: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -9410,11 +9416,13 @@ export namespace Prisma {
     id?: true
     meetId?: true
     botId?: true
+    name?: true
     userId?: true
     status?: true
     constructedUrl?: true
     startTime?: true
     endTime?: true
+    summary?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9423,11 +9431,13 @@ export namespace Prisma {
     id?: true
     meetId?: true
     botId?: true
+    name?: true
     userId?: true
     status?: true
     constructedUrl?: true
     startTime?: true
     endTime?: true
+    summary?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9436,11 +9446,13 @@ export namespace Prisma {
     id?: true
     meetId?: true
     botId?: true
+    name?: true
     userId?: true
     status?: true
     constructedUrl?: true
     startTime?: true
     endTime?: true
+    summary?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -9522,11 +9534,13 @@ export namespace Prisma {
     id: string
     meetId: string
     botId: string
+    name: string
     userId: string
     status: string | null
     constructedUrl: string | null
     startTime: Date | null
     endTime: Date | null
+    summary: string | null
     createdAt: Date
     updatedAt: Date
     _count: MeetingCountAggregateOutputType | null
@@ -9552,11 +9566,13 @@ export namespace Prisma {
     id?: boolean
     meetId?: boolean
     botId?: boolean
+    name?: boolean
     userId?: boolean
     status?: boolean
     constructedUrl?: boolean
     startTime?: boolean
     endTime?: boolean
+    summary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     conversations?: boolean | Meeting$conversationsArgs<ExtArgs>
@@ -9568,11 +9584,13 @@ export namespace Prisma {
     id?: boolean
     meetId?: boolean
     botId?: boolean
+    name?: boolean
     userId?: boolean
     status?: boolean
     constructedUrl?: boolean
     startTime?: boolean
     endTime?: boolean
+    summary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -9582,11 +9600,13 @@ export namespace Prisma {
     id?: boolean
     meetId?: boolean
     botId?: boolean
+    name?: boolean
     userId?: boolean
     status?: boolean
     constructedUrl?: boolean
     startTime?: boolean
     endTime?: boolean
+    summary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -9596,16 +9616,18 @@ export namespace Prisma {
     id?: boolean
     meetId?: boolean
     botId?: boolean
+    name?: boolean
     userId?: boolean
     status?: boolean
     constructedUrl?: boolean
     startTime?: boolean
     endTime?: boolean
+    summary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MeetingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "meetId" | "botId" | "userId" | "status" | "constructedUrl" | "startTime" | "endTime" | "createdAt" | "updatedAt", ExtArgs["result"]["meeting"]>
+  export type MeetingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "meetId" | "botId" | "name" | "userId" | "status" | "constructedUrl" | "startTime" | "endTime" | "summary" | "createdAt" | "updatedAt", ExtArgs["result"]["meeting"]>
   export type MeetingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     conversations?: boolean | Meeting$conversationsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -9628,11 +9650,13 @@ export namespace Prisma {
       id: string
       meetId: string
       botId: string
+      name: string
       userId: string
       status: string | null
       constructedUrl: string | null
       startTime: Date | null
       endTime: Date | null
+      summary: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["meeting"]>
@@ -10063,11 +10087,13 @@ export namespace Prisma {
     readonly id: FieldRef<"Meeting", 'String'>
     readonly meetId: FieldRef<"Meeting", 'String'>
     readonly botId: FieldRef<"Meeting", 'String'>
+    readonly name: FieldRef<"Meeting", 'String'>
     readonly userId: FieldRef<"Meeting", 'String'>
     readonly status: FieldRef<"Meeting", 'String'>
     readonly constructedUrl: FieldRef<"Meeting", 'String'>
     readonly startTime: FieldRef<"Meeting", 'DateTime'>
     readonly endTime: FieldRef<"Meeting", 'DateTime'>
+    readonly summary: FieldRef<"Meeting", 'String'>
     readonly createdAt: FieldRef<"Meeting", 'DateTime'>
     readonly updatedAt: FieldRef<"Meeting", 'DateTime'>
   }
@@ -11763,11 +11789,13 @@ export namespace Prisma {
     id: 'id',
     meetId: 'meetId',
     botId: 'botId',
+    name: 'name',
     userId: 'userId',
     status: 'status',
     constructedUrl: 'constructedUrl',
     startTime: 'startTime',
     endTime: 'endTime',
+    summary: 'summary',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12398,11 +12426,13 @@ export namespace Prisma {
     id?: StringFilter<"Meeting"> | string
     meetId?: StringFilter<"Meeting"> | string
     botId?: StringFilter<"Meeting"> | string
+    name?: StringFilter<"Meeting"> | string
     userId?: StringFilter<"Meeting"> | string
     status?: StringNullableFilter<"Meeting"> | string | null
     constructedUrl?: StringNullableFilter<"Meeting"> | string | null
     startTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
     endTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
+    summary?: StringNullableFilter<"Meeting"> | string | null
     createdAt?: DateTimeFilter<"Meeting"> | Date | string
     updatedAt?: DateTimeFilter<"Meeting"> | Date | string
     conversations?: ConversationListRelationFilter
@@ -12413,11 +12443,13 @@ export namespace Prisma {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     status?: SortOrderInput | SortOrder
     constructedUrl?: SortOrderInput | SortOrder
     startTime?: SortOrderInput | SortOrder
     endTime?: SortOrderInput | SortOrder
+    summary?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     conversations?: ConversationOrderByRelationAggregateInput
@@ -12431,11 +12463,13 @@ export namespace Prisma {
     OR?: MeetingWhereInput[]
     NOT?: MeetingWhereInput | MeetingWhereInput[]
     botId?: StringFilter<"Meeting"> | string
+    name?: StringFilter<"Meeting"> | string
     userId?: StringFilter<"Meeting"> | string
     status?: StringNullableFilter<"Meeting"> | string | null
     constructedUrl?: StringNullableFilter<"Meeting"> | string | null
     startTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
     endTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
+    summary?: StringNullableFilter<"Meeting"> | string | null
     createdAt?: DateTimeFilter<"Meeting"> | Date | string
     updatedAt?: DateTimeFilter<"Meeting"> | Date | string
     conversations?: ConversationListRelationFilter
@@ -12446,11 +12480,13 @@ export namespace Prisma {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     status?: SortOrderInput | SortOrder
     constructedUrl?: SortOrderInput | SortOrder
     startTime?: SortOrderInput | SortOrder
     endTime?: SortOrderInput | SortOrder
+    summary?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MeetingCountOrderByAggregateInput
@@ -12465,11 +12501,13 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Meeting"> | string
     meetId?: StringWithAggregatesFilter<"Meeting"> | string
     botId?: StringWithAggregatesFilter<"Meeting"> | string
+    name?: StringWithAggregatesFilter<"Meeting"> | string
     userId?: StringWithAggregatesFilter<"Meeting"> | string
     status?: StringNullableWithAggregatesFilter<"Meeting"> | string | null
     constructedUrl?: StringNullableWithAggregatesFilter<"Meeting"> | string | null
     startTime?: DateTimeNullableWithAggregatesFilter<"Meeting"> | Date | string | null
     endTime?: DateTimeNullableWithAggregatesFilter<"Meeting"> | Date | string | null
+    summary?: StringNullableWithAggregatesFilter<"Meeting"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Meeting"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Meeting"> | Date | string
   }
@@ -13047,10 +13085,12 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
+    name: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
+    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     conversations?: ConversationCreateNestedManyWithoutMeetingInput
@@ -13061,11 +13101,13 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
+    name: string
     userId: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
+    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     conversations?: ConversationUncheckedCreateNestedManyWithoutMeetingInput
@@ -13075,10 +13117,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     conversations?: ConversationUpdateManyWithoutMeetingNestedInput
@@ -13089,11 +13133,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     conversations?: ConversationUncheckedUpdateManyWithoutMeetingNestedInput
@@ -13103,11 +13149,13 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
+    name: string
     userId: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
+    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13116,10 +13164,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13128,11 +13178,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13745,11 +13797,13 @@ export namespace Prisma {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     status?: SortOrder
     constructedUrl?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    summary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13758,11 +13812,13 @@ export namespace Prisma {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     status?: SortOrder
     constructedUrl?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    summary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13771,11 +13827,13 @@ export namespace Prisma {
     id?: SortOrder
     meetId?: SortOrder
     botId?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     status?: SortOrder
     constructedUrl?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    summary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14537,10 +14595,12 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
+    name: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
+    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     conversations?: ConversationCreateNestedManyWithoutMeetingInput
@@ -14550,10 +14610,12 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
+    name: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
+    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     conversations?: ConversationUncheckedCreateNestedManyWithoutMeetingInput
@@ -14654,11 +14716,13 @@ export namespace Prisma {
     id?: StringFilter<"Meeting"> | string
     meetId?: StringFilter<"Meeting"> | string
     botId?: StringFilter<"Meeting"> | string
+    name?: StringFilter<"Meeting"> | string
     userId?: StringFilter<"Meeting"> | string
     status?: StringNullableFilter<"Meeting"> | string | null
     constructedUrl?: StringNullableFilter<"Meeting"> | string | null
     startTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
     endTime?: DateTimeNullableFilter<"Meeting"> | Date | string | null
+    summary?: StringNullableFilter<"Meeting"> | string | null
     createdAt?: DateTimeFilter<"Meeting"> | Date | string
     updatedAt?: DateTimeFilter<"Meeting"> | Date | string
   }
@@ -15145,10 +15209,12 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
+    name: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
+    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutMeetingsInput
@@ -15158,11 +15224,13 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
+    name: string
     userId: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
+    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15187,10 +15255,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutMeetingsNestedInput
@@ -15200,11 +15270,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15235,10 +15307,12 @@ export namespace Prisma {
     id?: string
     meetId: string
     botId: string
+    name: string
     status?: string | null
     constructedUrl?: string | null
     startTime?: Date | string | null
     endTime?: Date | string | null
+    summary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15313,10 +15387,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     conversations?: ConversationUpdateManyWithoutMeetingNestedInput
@@ -15326,10 +15402,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     conversations?: ConversationUncheckedUpdateManyWithoutMeetingNestedInput
@@ -15339,10 +15417,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     meetId?: StringFieldUpdateOperationsInput | string
     botId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: NullableStringFieldUpdateOperationsInput | string | null
     constructedUrl?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

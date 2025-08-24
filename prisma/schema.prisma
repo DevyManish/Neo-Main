@@ -124,6 +124,7 @@ model Meeting {
   id             String    @id @default(uuid())
   meetId         String    @unique
   botId          String
+  name           String
   userId         String
   status         String?
   constructedUrl String?
